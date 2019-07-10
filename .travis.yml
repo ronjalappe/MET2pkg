@@ -4,11 +4,14 @@ r:
     - olderel
     - devel
 before_install:
-    - E -e 'install.packages("devtools")'
+    - R -e 'install.packages("devtools")'
+    - R -e 'install.packages("covr")'
 
 install:
-    - E -e 'devtools::install_deps(dep=T)'
+    - R -e 'devtools::install_deps(dep=T)'
 
 script:
     - R CMD build
     - R CMD check *tar.gz
+after:success:
+    - Rscript -e 'covr'
