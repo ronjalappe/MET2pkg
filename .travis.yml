@@ -3,6 +3,8 @@ r:
     - release
     - olderel
     - devel
+before_install:
+    - E -e 'install.packages("devtools")'
 
 install:
     - E -e 'devtools::install_deps(dep=T)'
